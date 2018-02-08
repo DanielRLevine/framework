@@ -1,0 +1,8 @@
+# Dependency directory
+node_modules
+
+# Mac file system
+.DS_Store
+
+# Emacs temporary files
+*~
