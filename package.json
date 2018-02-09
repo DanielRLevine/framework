@@ -4,8 +4,6 @@
   "description": "Basic node express framework.",
   "main": "server.js",
   "dependencies": {
-    "argparse": "^1.0.9",
-    "bluebird": "^3.5.1",
     "express": "^4.16.2"
   },
   "devDependencies": {},
@@ -14,5 +12,9 @@
     "start": "node server.js"
   },
   "author": "Daniel Levine",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanielRLevine/framework.git"
+  }
 }
