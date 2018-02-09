@@ -1,10 +1,28 @@
 /*** BEGIN dependencies ***/
 
+var argparse = require("argparse");
 var BPromise = require("bluebird");
 var http = require("http");
 var express = require("express");
 
 /*** END dependencies ***/
+/*** BEGIN globals ***/
+
+// command line argument globals
+var ArgumentParser = argparse.ArgumentParser;
+var parser = new ArgumentParser({
+    version: '1.0.0',
+});
+parser.addArgument(
+    [ '-p', '--port' ],
+    {
+        help: 'Port on which test framework (i.e. this process) should listen',
+        defaultValue : 1390
+    }
+);
+var args = parser.parseArgs();
+
+/*** END globals ***/
 /*** BEGIN startup ***/
 
 // express instance
@@ -36,7 +54,7 @@ app.use("/license", require("./license/routes.js"));
 
 // server instance
 var server = http.createServer(app);
-server.listen(1390, function() {
+server.listen(args.port, function() {
     console.log("Launched server.");
 });
 
