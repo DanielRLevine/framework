@@ -1,5 +1,6 @@
 var http = require("http");
 var express = require("express");
+var BPromise = require("bluebird");
 var app = express();
 
 function my_helper()
@@ -8,7 +9,7 @@ function my_helper()
     for (var j = 0; j < 1000; ++j)
         array.push(Math.random());
     array.sort();
-    return Promise.resolve(true);
+    return BPromise.resolve(true);
 }
 
 function my_route(req, res) {
