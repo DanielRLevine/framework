@@ -9,26 +9,6 @@ var express = require("express");
 // express instance
 var app = express();
 
-// Add headers
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
-    // Request methods you wish to allow
-    res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
-
-    // Request headers you wish to allow
-    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type,user_id,session_id");
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader("Access-Control-Allow-Credentials", true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
 // callers
 function request_license(req, res) {
     var array = [];
@@ -39,8 +19,7 @@ function request_license(req, res) {
 }
 
 // routes
-app.use("/", request_license);
-
+app.get("/", request_license);
 
 // server instance
 var server = http.createServer(app);
