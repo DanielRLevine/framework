@@ -72,38 +72,9 @@ server.listen(1390, function() {
 //      printing console.log(), and logging http statistics
 exports.result_handler = function(res, result_promise, license_or_dashboard, msg, user_id)
 {
-    var status = 200;
     return result_promise
-    .then(function(result){     // successful
-
-        // send result
-        res.send(result);
-
-        // console.log() result
-        //console.log(msg);
-        //console.log("\tClient: " + user_id);
-
-        return true;
-    })
-    .catch(function(e){         // unsuccessful
-
-        // compute status code
-        status = get_error_code(e);
-
-        // send result
-        res.status(status).send({"error" : e.toString()});
-
-        // console.log() 500 errors
-        if (status === 500)
-        {
-            console.log(msg);
-            console.log(e);
-        }
-
-        // console.log() result
-        //console.log("FAILURE " + status + " (" + e + "): " + msg);
-        //console.log("\tClient: " + user_id);
-
+    .then(function(){
+        res.send(true);
         return true;
     });
 };
