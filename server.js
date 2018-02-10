@@ -40,10 +40,18 @@ function busy_work(n)
     return true;
 }
 
-app.post('/', function (req, res) {
+var router = express.Router();
+router.post('/', function(req, res) {
     busy_work(1);
     res.send(true);
 });
+
+app.use(router);
+
+/*app.post('/', function (req, res) {
+    busy_work(1);
+    res.send(true);
+});*/
 
 // server instance
 var server = http.createServer(app);
