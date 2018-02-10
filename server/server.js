@@ -30,11 +30,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-var router = require("express").Router();
-
-// routes
-router.post("/", request_license);
-
 function busy_work(n)
 {
     for (var i = 0; i < n; ++i)
@@ -57,7 +52,7 @@ function request_license(req, res) {
 }
 
 // routes
-app.use("/license", router);
+app.use("/", request_license);
 
 
 // server instance
