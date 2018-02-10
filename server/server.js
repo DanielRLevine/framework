@@ -50,8 +50,8 @@ function busy_work(n)
 // callers
 function request_license(req, res) {
     var result = busy_work(1).return(true);
-    var msg = "LICENSE POST";
-    return exports.result_handler(res, result, "license", "Request License", "user not specified");
+    res.send(true);
+    return true;
 }
 
 // routes
@@ -65,47 +65,3 @@ server.listen(1390, function() {
 });
 
 /*** END startup ***/
-/*** BEGIN result handling ***/
-
-// called by every route
-// responsible for sending result once it has resolved (along with appropriate status code),
-//      printing console.log(), and logging http statistics
-exports.result_handler = function(res, result_promise, license_or_dashboard, msg, user_id)
-{
-    var status = 200;
-    return result_promise
-    .then(function(result){     // successful
-
-        // send result
-        res.send(result);
-
-        // console.log() result
-        //console.log(msg);
-        //console.log("\tClient: " + user_id);
-
-        return true;
-    })
-    .catch(function(e){         // unsuccessful
-
-        // compute status code
-        status = get_error_code(e);
-
-        // send result
-        res.status(status).send({"error" : e.toString()});
-
-        // console.log() 500 errors
-        if (status === 500)
-        {
-            console.log(msg);
-            console.log(e);
-        }
-
-        // console.log() result
-        //console.log("FAILURE " + status + " (" + e + "): " + msg);
-        //console.log("\tClient: " + user_id);
-
-        return true;
-    });
-};
-
-/*** END result handling ***/
