@@ -31,7 +31,8 @@ app.use(function (req, res, next) {
 });
 
 // routes
-app.use("/license", require("./license/routes.js"));
+var license_routes = require("./license/routes.js");
+app.use("/license", license_routes);
 
 
 // server instance
