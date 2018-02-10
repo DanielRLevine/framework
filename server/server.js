@@ -2,12 +2,20 @@ var http = require("http");
 var express = require("express");
 var app = express();
 
-function my_route(req, res) {
+function my_helper()
+{
     var array = [];
     for (var j = 0; j < 1000; ++j)
         array.push(Math.random());
     array.sort();
-    res.send(true);
+    return Promise.resolve(true);
+}
+
+function my_route(req, res) {
+    my_helper()
+    .then(function(){
+        res.send(true);
+    });
 }
 
 app.get("/", my_route);
