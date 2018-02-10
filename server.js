@@ -40,7 +40,7 @@ function busy_work(n)
     return true;
 }
 
-app.get('/', function (req, res) {
+app.post('/', function (req, res) {
     busy_work(1);
     res.send(true);
 });
