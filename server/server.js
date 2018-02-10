@@ -1,6 +1,5 @@
 /*** BEGIN dependencies ***/
 
-var BPromise = require("bluebird");
 var http = require("http");
 var express = require("express");
 
@@ -44,16 +43,14 @@ function busy_work(n)
             array.push(Math.random());
         array.sort();
     }
-    return BPromise.resolve(true);
+    return true;
 }
 
 // callers
 function request_license(req, res) {
-    var result = busy_work(1)
-    .then(function(){
-        res.send(true);
-        return true;
-    });
+    busy_work(1);
+    res.send(true);
+    return true;
 }
 
 // routes
