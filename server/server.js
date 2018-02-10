@@ -1,16 +1,8 @@
-/*** BEGIN dependencies ***/
-
 var http = require("http");
 var express = require("express");
-
-/*** END dependencies ***/
-/*** BEGIN startup ***/
-
-// express instance
 var app = express();
 
-// callers
-function request_license(req, res) {
+function my_route(req, res) {
     var array = [];
     for (var j = 0; j < 1000; ++j)
         array.push(Math.random());
@@ -18,13 +10,9 @@ function request_license(req, res) {
     res.send(true);
 }
 
-// routes
-app.get("/", request_license);
+app.get("/", my_route);
 
-// server instance
 var server = http.createServer(app);
 server.listen(1390, function() {
     console.log("Launched server.");
 });
-
-/*** END startup ***/
