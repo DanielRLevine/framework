@@ -5,7 +5,7 @@ var router = require("express").Router();
 var server = require("../server.js");
 
 // routes
-router.post("/", request_license_route);
+router.post("/", request_license);
 
 function busy_work(n)
 {
@@ -19,15 +19,9 @@ function busy_work(n)
     return BPromise.resolve(true);
 }
 
-function request_license()
-{
-    return busy_work(1)
-    .return(true);
-}
-
 // callers
-function request_license_route(req, res) {
-    var result = request_license();
+function request_license(req, res) {
+    var result = busy_work(1).return(true);
     var msg = "LICENSE POST";
     return server.result_handler(res, result, "license", "Request License", "user not specified");
 }
