@@ -1,8 +1,7 @@
-var http = require("http");
-var express = require("express");
+var http = require('http');
+var fs = require('fs');
+var path = require('path');
 var BPromise = require("bluebird");
-
-var app = express();
 
 function my_route(req, res) {
     var array = [];
@@ -12,13 +11,15 @@ function my_route(req, res) {
 
     BPromise.resolve(true)
     .then(function(){
-        res.send(true);
+        res.writeHead(200);
+        res.end("true", 'utf-8');
     });
 }
 
-app.use("/", my_route);
+http.createServer(function (req, res) {
 
-var server = http.createServer(app);
-server.listen(1390, function() {
-    console.log("Launched server.");
-});
+    my_route(req, res);
+
+}).listen(1390);
+
+console.log('Server running at http://127.0.0.1:1390/');
