@@ -1,6 +1,9 @@
 var http = require('http');
 var BPromise = require("bluebird");
 
+process.env.NODE_ENV = 'production';
+BPromise.setScheduler(fn => process.nextTick(fn));
+
 function my_route(req, res) {
     var array = [];
     for (var j = 0; j < 1000; ++j)
