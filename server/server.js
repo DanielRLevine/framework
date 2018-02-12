@@ -1,6 +1,4 @@
 var http = require('http');
-var fs = require('fs');
-var path = require('path');
 var BPromise = require("bluebird");
 
 function my_route(req, res) {

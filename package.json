@@ -4,8 +4,7 @@
   "description": "Basic node express framework.",
   "main": "server.js",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "express": "^4.16.2"
+    "bluebird": "^3.5.1"
   },
   "devDependencies": {},
   "scripts": {
